@@ -14,7 +14,7 @@ function VendorOAuth() {
       const provider = new GoogleAuthProvider();
       const auth = getAuth(app);
       const result = await signInWithPopup(auth, provider);
-      const res = await fetch("/api/vendor/vendorgoogle", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/vendor/vendorgoogle`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

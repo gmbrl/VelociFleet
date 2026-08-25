@@ -25,7 +25,7 @@ export async function sendBookingDetailsEmail(
   dispatch
 ) {
   try {
-    const sendEamil = await fetch("/api/user/sendBookingDetailsEamil", {
+    const sendEamil = await fetch( `${import.meta.env.VITE_API_URL}/api/user/sendBookingDetailsEamil`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

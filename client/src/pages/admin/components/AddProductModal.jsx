@@ -26,7 +26,7 @@ import {  setLoading, setadminAddVehicleSuccess, setadminCrudError } from "../..
 
 export const fetchModelData = async (dispatch) => {
   try {
-    const res = await fetch("/api/admin/getVehicleModels", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}admin/getVehicleModels`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -128,7 +128,7 @@ const AddProductModal = () => {
         tostID = toast.loading("saving...", { position: "bottom-center" });
         dispatch(setLoading(true))
       }
-      const res = await fetch("/api/admin/addProduct", {
+      const res = await fetch( `${import.meta.env.VITE_API_URL}/admin/addProduct`, {
         method: "POST",
         body:formData
       });

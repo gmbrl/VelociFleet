@@ -1,6 +1,7 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 import userRoute from "./routes/userRoute.js";
 import authRoute from "./routes/authRoute.js";
 import adminRoute from './routes/adminRoute.js'
@@ -21,7 +22,7 @@ dotenv.config();
 const port = 3000;
 
 mongoose
-  .connect(process.env.mongo_uri)
+  .connect(process.env.MONGODB_URI)
   .then(console.log("connected"))
   .catch((error) => console.error(error));
 

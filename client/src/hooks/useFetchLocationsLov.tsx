@@ -3,6 +3,14 @@ import { useDispatch } from "react-redux";
 import { setCompanyData, setDistrictData, setLocationData, setModelData } from "../redux/adminSlices/adminDashboardSlice/CarModelDataSlice";
 import { setWholeData } from "../redux/user/selectRideSlice";
 
+type LovItem = {
+  type: string;
+  model?: string;
+  brand?: string;
+  location?: string;
+  district?: string;
+};
+
 const useFetchLocationsLov = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
@@ -10,7 +18,8 @@ const useFetchLocationsLov = () => {
   const fetchLov = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch("/api/admin/getVehicleModels", {
+      const apiUrl = (import.meta as ImportMeta & { env: { VITE_API_URL: string } }).env.VITE_API_URL;
+      const res = await fetch(`${apiUrl}/admin/getVehicleModels`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -18,7 +27,7 @@ const useFetchLocationsLov = () => {
       });
 
       if (res.ok) {
-        const data = await res.json();
+        const data: LovItem[] = await res.json();
 
         //getting models from data
         const models = data.filter((cur) => cur.type === "car").map((cur) => cur.model);

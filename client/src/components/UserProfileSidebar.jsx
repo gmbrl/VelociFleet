@@ -15,7 +15,6 @@ import { links } from "./UserSidebarContent";
 import { showSidebarOrNot } from "../redux/adminSlices/adminDashboardSlice/DashboardSlice";
 import { CiLogout } from "react-icons/ci";
 
-
 const UserProfileSidebar = () => {
   const { activeMenu, screenSize } = useSelector(
     (state) => state.adminDashboardSlice
@@ -30,35 +29,43 @@ const UserProfileSidebar = () => {
 
   const activeLink =
     "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-black bg-blue-50 text-md  m-2";
-  //in normal mode there was dark:text-gray-200 i removed it
   const normalLink =
     "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg  text-md text-gray-700   dark:hover:text-black hover:bg-slate-100 m-2";
 
-  //SignOut
   const handleSignout = async () => {
-    const res = await fetch("/api/admin/signout", {
-      method: "GET",
-      credentials:'include'
-    });
-    const data = await res.json();
-    if (data) {
-      dispatch(signOut());
-      navigate("/signin");
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/signout`, {
+        method: "GET",
+        credentials: 'include'
+      });
+      
+      if (res.ok) {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        dispatch(signOut());
+        navigate("/signin");
+      }
+    } catch (error) {
+      console.error("Signout error:", error);
     }
   };
 
   const handleDelete = async () => {
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/delete/${currentUser._id}`, {
         method: "DELETE",
       });
+      
       const data = await res.json();
-      if (data.succes === false) {
+      
+      if (!res.ok) {
         dispatch(deleteUserFailure(data));
         return;
       }
+      
       dispatch(deleteUserSuccess(data));
+      navigate("/");
     } catch (error) {
       dispatch(deleteUserFailure(error));
     }
@@ -71,13 +78,11 @@ const UserProfileSidebar = () => {
           <div className="flex justify-between items-center">
             <Link
               to={`/`}
-              onClick={() => {}}
-              className="items-center flex gap-3 mt-4 ml-3 text-xl font-extrabold text-black tracking-tight "
+              className="items-center flex gap-3 mt-4 ml-3 text-xl font-extrabold text-black tracking-tight"
             >
               <SiShopware />
               VelociFleet
             </Link>
-            {/* hide sidebar button */}
             <TooltipComponent content={"menu"} position="BottomCenter">
               <button
                 className="text-xl rounded-full p-3 mt-4 block  hover:bg-gray-500"
@@ -87,6 +92,7 @@ const UserProfileSidebar = () => {
               </button>
             </TooltipComponent>
           </div>
+          
           <div className="mt-10">
             {links.map((cur, idx) => (
               <div key={idx}>
@@ -113,8 +119,7 @@ const UserProfileSidebar = () => {
             ))}
 
             <div className="flex flex-col gap-y-5">
-
-            <div className="flex items-center mt-10 gap-2">
+              <div className="flex items-center mt-10 gap-2">
                 <button
                   type="button"
                   className="ml-4 text-red-400"
@@ -124,18 +129,16 @@ const UserProfileSidebar = () => {
                 </button>
                 <CiLogout />
               </div>
+              
               <div className="ml-4">
-              <button
-                className="text-red-400"
-                onClick={handleDelete}
-                type="button"
-              >
-                {isLoading ? "Loading..." : "Delete User"}
-              </button>
+                <button
+                  className="text-red-400"
+                  onClick={handleDelete}
+                  type="button"
+                >
+                  {isLoading ? "Loading..." : "Delete User"}
+                </button>
               </div>
-              
-
-              
             </div>
           </div>
         </>
