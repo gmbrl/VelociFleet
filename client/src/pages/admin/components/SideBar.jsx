@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { SiShopware } from "react-icons/si";
 import { MdOutlineCancel } from "react-icons/md";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
@@ -45,7 +47,7 @@ const SideBar = () => {
               className="items-center flex gap-3 mt-4 ml-3 text-xl font-extrabold text-blue-500 tracking-tight "
             >
               <SiShopware />
-              Rent a Ride
+              VelociFleet
             </Link>
             <TooltipComponent content={"menu"} position="BottomCenter">
               <button

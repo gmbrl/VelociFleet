@@ -1,3 +1,5 @@
+import React from 'react';
+
 import styles from "../../index";
 import Herocar from "../../Assets/homepage_car_copy.jpeg";
 import CarSearch from "./CarSearch";

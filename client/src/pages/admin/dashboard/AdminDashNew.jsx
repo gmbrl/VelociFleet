@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Routes, Route } from "react-router-dom";
 import { Navbar, SideBar } from "../components/index.jsx";
 import {

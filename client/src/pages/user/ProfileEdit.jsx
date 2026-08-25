@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useState } from "react";
 import Modal from "../../components/CustomModal";
 import { TbEditCircle } from "react-icons/tb";

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useEffect, useState } from "react";
 import { MdCurrencyRupee } from "react-icons/md";
 import { IoMdTime } from "react-icons/io";

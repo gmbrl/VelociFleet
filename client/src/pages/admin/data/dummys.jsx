@@ -1,3 +1,4 @@
+import React from 'react';
 import { BsBoxSeam } from "react-icons/bs";
 import { FiBarChart } from "react-icons/fi";
 import { MdOutlineSupervisorAccount } from "react-icons/md";

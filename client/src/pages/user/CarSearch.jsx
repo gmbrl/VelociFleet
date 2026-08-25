@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { IconCalendarEvent, IconMapPinFilled, IconX } from "@tabler/icons-react";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";

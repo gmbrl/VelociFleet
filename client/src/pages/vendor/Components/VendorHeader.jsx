@@ -1,3 +1,5 @@
+import React from 'react';
+
 import PropTypes from 'prop-types';
 import { addVehicleClicked } from '../../../redux/adminSlices/actions';
 import { useDispatch } from 'react-redux';

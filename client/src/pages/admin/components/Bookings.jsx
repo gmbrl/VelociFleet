@@ -1,3 +1,5 @@
+import React from 'react';
+
 import BookingsTable from "./BookingsTable";
 
 const Bookings = () => {

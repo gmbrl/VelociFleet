@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
 import { FiShoppingBag, FiEdit, FiPieChart } from 'react-icons/fi';
 import { BsKanban, BsBarChart  } from 'react-icons/bs';
